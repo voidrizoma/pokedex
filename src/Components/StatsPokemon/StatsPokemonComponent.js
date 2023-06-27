@@ -4,7 +4,7 @@ import { map, capitalize } from 'lodash';
 
 export default function StatsPokemon({ stats }) {
   const barStyles = (number) => {
-    const color = number > 49 ? 'orange' : 'yellow';
+    const color = number > 49 ? '#028a0f' : '#03ac13';
     return {
       backgroundColor: color,
       width: `${number}%`,

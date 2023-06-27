@@ -9,9 +9,9 @@ export default function PokemonType({ types }) {
     {types.map(item => (
       <View
         key={item.type.name}
-        style={{ backgroundColor: color(item.type.name), ...styles.pill }}
+        style={styles.pill}
       >
-        <Text style={styles.textType}>{item.type.name}</Text>
+        <Text style={{color: color(item.type.name), ...styles.textType}}>{item.type.name}</Text>
       </View>
       ))}
     </View >
@@ -28,11 +28,14 @@ const styles = StyleSheet.create({
   pill: {
     paddingHorizontal: 30,
     paddingVertical: 5,
-    borderRadius: 10,
+    borderTopRightRadius: 100,
+    borderBottomRightRadius: 0                                                                     ,
+    borderBottomLeftRadius: 100,
     marginHorizontal: 10,
+    backgroundColor: "white"
   },
   textType: {
-    color: "white",
-    textTransform: "uppercase"
+    textTransform: "uppercase",
+    fontWeight: "bold"
   }
 })

@@ -4,14 +4,14 @@ import {
   Image,
   StyleSheet, TouchableWithoutFeedback, Modal, Pressable
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import getColorByType from '../../Utils/Colors/colorByType';
 import PokemonType  from "../PokemonTypes/PokemonTypesComponent"
 import StatsPokemon from '../StatsPokemon/StatsPokemonComponent';
 
 export default function CardComponent({ pokemon }) {
   const [modalVisible, setModalVisible] = useState(false);
-
+  
   const colors = getColorByType(pokemon.type)
   const bgType = {backgroundColor: colors, ...styles.bgStyles}
   const bgTypeModal = {backgroundColor: colors, ...styles.bgStylesModal}
@@ -19,7 +19,9 @@ export default function CardComponent({ pokemon }) {
   return (
     <>
     <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
+
       <View style={styles.card}>
+
         <View style={styles.spacing}>
           <View style={bgType}>
           <Text style={styles.order}># {`${pokemon.order}`.padStart(4,0)}</Text>
@@ -27,7 +29,9 @@ export default function CardComponent({ pokemon }) {
             <Image source={{uri: `https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/${pokemon.name}.png`}} style={styles.image} />
           </View>
         </View>
+
       </View>
+
     </TouchableWithoutFeedback>
          <Modal
          animationType="slide"
@@ -37,7 +41,8 @@ export default function CardComponent({ pokemon }) {
            setModalVisible(!modalVisible);
          }}>
          <View style={styles.centeredView}>
-           <View style={styles.modalView}>
+          <View>
+          <View style={styles.modalView}>
            <View style={bgTypeModal}>
             <Text style={styles.nameModal}>{pokemon.name}</Text>
             <Image source={{uri: `https://img.pokemondb.net/sprites/omega-ruby-alpha-sapphire/dex/normal/${pokemon.name}.png`}} style={styles.imageModal} />
@@ -50,11 +55,13 @@ export default function CardComponent({ pokemon }) {
           </View>
 
              <Pressable
-               style={[styles.button, styles.buttonClose]}
+               style={{backgroundColor: colors, ...styles.button }}
                onPress={() => setModalVisible(false)}>
-               <Text style={styles.textStyle}>Salir de {pokemon.name}</Text>
+               <Text style={styles.textStyle}>X</Text>
              </Pressable>
            </View>
+          </View>
+
          </View>
        </Modal>
 </>
@@ -77,12 +84,12 @@ const styles = StyleSheet.create({
   },
   bgStylesModal: {
     borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
+    borderTopRightRadius: 100,
     borderBottomRightRadius: 15,
     borderBottomLeftRadius: 100,
-    padding: 25,
+    padding: 20,
     width: "100%",
-    height: 100
+    height: 70
   },
   order: {
     fontSize: 10,
@@ -122,7 +129,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
+    backgroundColor: "#181818"
   },
   modalView: {
     borderTopLeftRadius: 10,
@@ -132,11 +139,11 @@ const styles = StyleSheet.create({
     margin: 10,
     width: 350,
     height: 500,
-    backgroundColor: 'red',
+    backgroundColor: '#fbfbf9',
     borderRadius: 10,
     padding: 25,
     alignItems: 'center',
-    shadowColor: '#000',
+    shadowColor: '#fff',
     shadowOffset: {
       width: 10,
       height: 2,
@@ -146,15 +153,9 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   button: {
-    borderRadius: 20,
+    borderRadius: 10,
     padding: 10,
     elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
   },
   textStyle: {
     color: 'white',
