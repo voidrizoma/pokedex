@@ -7,11 +7,15 @@
  */
 
 import React from 'react';
+import { NavigationContainer } from "@react-navigation/native"
 import Home from './src/Views/Home/Home';
 
 const App = () => {
   return (
-      <Home />
+    <NavigationContainer>
+       <Home />
+    </NavigationContainer>
+     
   )
 };
 

@@ -1,4 +1,4 @@
-import {SafeAreaView, ScrollView, Button} from 'react-native';
+import {SafeAreaView, ScrollView, View, StyleSheet } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import LayoutComponent from '../../Commons/Layout/LayoutComponent';
 import {
@@ -15,7 +15,7 @@ export default function Home() {
     (async () => {
       await fetchData();;
     })();
-  }, [data]);
+  }, []);
 
   const fetchData = async () => {
     try {
@@ -29,6 +29,8 @@ export default function Home() {
           name: detailsPokemon.data.name,
           type: detailsPokemon.data.types[0].type.name,
           order: detailsPokemon.data.order,
+          types: detailsPokemon.data.types,
+          stats: detailsPokemon.data.stats
         });
       }
       setData([...data, ...pokemonsList]);
@@ -36,14 +38,30 @@ export default function Home() {
       console.log(err);
     }
   };
-
+  
   return (
     <SafeAreaView>
       <ScrollView>
         <LayoutComponent>
+          <View style={styles.content}>
           <ContentList data={data} fetchData={fetchData} isNext={nextPage}/>
+          </View>
         </LayoutComponent>
       </ScrollView>
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  content: {
+    height: 550,
+    margin: 35,
+    marginBottom: 10,
+    backgroundColor: "white",
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 15,
+    borderBottomLeftRadius: 100,
+    padding: 30
+  }
+})
