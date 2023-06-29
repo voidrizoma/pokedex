@@ -2,19 +2,19 @@ import React from "react";
 import {StyleSheet, FlatList, ActivityIndicator} from "react-native";
 import CardComponent from "../Card/CardComponent";
 
-export default function ContentList({ data, fetchData, isNext, hola }) {
+export default function ContentList({ data, fetchData, isNext }) {
 
   const loadPokemons = () => {
     fetchData()
   }
   
-  return (<FlatList data={data}
+  return (<FlatList testID="flatlist" data={data}
     showsVerticalScrollIndicator={false}
     keyExtractor={
       (pokemon) => String(pokemon.id)
     }
     renderItem={
-      ({item}) => <CardComponent pokemon={item} hola={hola}/>
+      ({item}) => <CardComponent pokemon={item}/>
     }
     contentContainerStyle={
       styles.flatListContentContainer

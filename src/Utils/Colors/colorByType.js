@@ -1,5 +1,5 @@
 export const colorsType = {
-  normal: "#54543C",
+  normal: "#e8ceac",
   fighting: "#90241E",
   flying: "#A890F0",
   poison: "#A040A0",
